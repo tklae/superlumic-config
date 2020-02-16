@@ -1,0 +1,301 @@
+---
+- hosts: localhost
+  connection: local
+
+  vars_files:
+    - vars/roderik-secrets.yml
+
+  roles:
+    - roderik.superlumic-osx-defaults
+    - roderik.superlumic-homebrew
+    - roderik.superlumic-cli
+    - roderik.superlumic-computername
+    - roderik.superlumic-vim
+    
+  tasks:
+    - name: add a shortcut for archive in mail
+      shell: defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Archive" "@e"
+    - name: install personal brew apps
+      homebrew: name={{item}} state=latest
+      with_items:
+        - imagemagick
+        - ip_relay
+        - gradle
+        - httrack
+        - ievms
+        - lazygit
+        - lua
+        - maven
+        - minio
+        - mozilla-addon-sdk
+        - scala
+        - sdkman
+        - youtube-dl
+    - name: install personal cask applications
+      homebrew_cask: name={{item}} state=present
+      with_items:
+        - visual-studio-code
+        - google-drive-file-stream
+        - chromium
+        - franz
+        - zoomus
+        - spotify
+        - sketch
+        - kubernetic
+        - android-file-transfer
+        - audacity
+        - balsamiq-mockups
+        - cd-to
+        - chicken
+        - cyberduck
+        - dash
+        - dia
+        - disk-inventory-x
+        - emacs
+        - fluid
+        - freemind
+        - gimp
+        - rowanj-gitx
+        - gpgtools
+        - grandperspective
+        - imagealpha
+        - imageoptim
+        - inkscape
+        - integrity
+        - iterm2
+        - keepassxc
+        - kindle
+        - launchrocket
+        - libreoffice
+        - macvim
+        - mailspring
+        - mucommander
+        - multifirefox
+        - mumble
+        - mysimbl
+        - mysqlworkbench
+        - nvalt
+        - owasp-zap
+        - paintbrush
+        - postgres
+        - postman
+        - recordit
+        - scroll-reverser
+        - seashore
+        - send-to-kindle
+        - shiftit
+        - slack
+        - soapui
+        - soundflower
+        - teamviewer
+        - teleport
+        - textmate
+        - the-unarchiver
+        - torbrowser
+        - transmission
+        - vagrant
+        - vagrant-manager
+        - vine-server
+        - virtualbox
+        - vlc
+        - xquartz
+        - beyond-compare
+        - firefox
+        - brave-browser
+        - jetbrains-toolbox
+        - audacity
+        - ccmenu
+    # - name: '[App Store] See which apps are already installed'
+    #   command: bash -c "mas list | cut -f 1 -d ' '"
+    #   register: mas_list
+    # - name: '[App Store] Install Mac App Store applications'
+    #   command: mas install {{ item.id }}
+    #   when: item.id not in mas_list.stdout_lines
+    #   with_items:
+    #     - { id: '409183694', name: 'Keynote' }
+    #     - { id: '1116599239', name: 'NordVPN IKE' }
+    #     - { id: '462058435', name: 'Microsoft Excel' }
+    #     - { id: '1142578753', name: 'OmniGraffle' }
+    #     - { id: '1333542190', name: '1Password 7' }
+    #     - { id: '407963104', name: 'Pixelmator' }
+    #     - { id: '462062816', name: 'Microsoft PowerPoint' }
+    #     - { id: '1384080005', name: 'Tweetbot' }
+    #     - { id: '409203825', name: 'Numbers' }
+    #     - { id: '409201541', name: 'Pages' }
+    #     - { id: '408981434', name: 'iMovie' }
+    #     - { id: '803453959', name: 'Slack' }
+    #     - { id: '462054704', name: 'Microsoft Word' }
+    #     - { id: '1039633667', name: 'Irvue' }
+
+  vars:
+    - computername: tklae
+    - preferred_shell: zsh  
+    - git_user_name: tklae
+    - git_user_email: github@klaesener.net 
+    - osx_defaults:
+# Appearance  
+        - domain: 'NSGlobalDomain'
+          key: 'AppleInterfaceStyleSwitchesAutomatically'
+          type: integer
+          value: 1
+        - domain: 'NSGlobalDomain'
+          key: 'AppleWindowTabbingMode'
+          type: string
+          value: "always"         
+# Keyboard
+        - domain: 'NSGlobalDomain'
+          key: 'KeyRepeat'
+          type: integer
+          value: 2
+        - domain: 'NSGlobalDomain'
+          key: 'InitialKeyRepeat'
+          type: integer
+          value: 15
+        - domain: 'NSGlobalDomain'
+          key: 'NSAutomaticTextCompletionEnabled'
+          type: integer
+          value: 1   
+        - domain: 'NSGlobalDomain'
+          key: 'NSAutomaticSpellingCorrectionEnabled'
+          type: integer
+          value: 1          
+        - domain: 'NSGlobalDomain'
+          key: 'NSAutomaticQuoteSubstitutionEnabled'
+          type: integer
+          value: 1          
+        - domain: 'NSGlobalDomain'
+          key: 'NSAutomaticDashSubstitutionEnabled'
+          type: integer
+          value: 1 
+        - domain: 'NSGlobalDomain'
+          key: 'WebAutomaticSpellingCorrectionEnabled'
+          type: integer
+          value: 1           
+# Trackpad
+        - domain: 'NSGlobalDomain'
+          key: 'com.apple.trackpad.scaling'
+          type: integer
+          value: 3
+        - domain: 'com.apple.AppleMultitouchTrackpad'
+          key: 'Clicking'
+          type: integer
+          value: 1
+        - domain: 'com.apple.AppleMultitouchTrackpad'
+          key: 'FirstClickThreshold'
+          type: integer
+          value: 2     
+        - domain: 'com.apple.AppleMultitouchTrackpad'
+          key: 'SecondClickThreshold'
+          type: integer
+          value: 2     
+        - domain: 'com.apple.driver.AppleBluetoothMultitouch.trackpad'
+          key: 'Clicking'
+          type: integer
+          value: 1                         
+# Dock
+        - domain: 'com.apple.dock'
+          key: 'autohide'
+          type: integer
+          value: 1
+        - domain: 'com.apple.dock'
+          key: 'largesize'
+          type: integer
+          value: 85
+        - domain: 'com.apple.dock'
+          key: 'magnification'
+          type: integer
+          value: 1          
+        - domain: 'com.apple.dock'
+          key: 'showAppExposeGestureEnabled'
+          type: integer
+          value: 1                    
+        - domain: 'com.apple.dock'
+          key: 'minimize-to-application'
+          type: integer
+          value: 1
+        - domain: 'com.apple.dock'
+          key: 'show-process-indicators'
+          type: boolean
+          value: true
+        - domain: 'com.apple.dock'
+          key: 'orientation'
+          type: string
+          value: left
+        - domain: 'com.apple.dock'
+          key: 'tilesize'
+          type: float
+          value: 32
+        - domain: 'com.apple.dock'
+          key: 'autohide-time-modifier'
+          type: int
+          value: 0
+        - domain: 'com.apple.dock'
+          key: 'autohide-delay'
+          type: int
+          value: 0
+# Safari
+        - domain: 'com.apple.Safari'
+          key: 'IncludeInternalDebugMenu'
+          type: boolean
+          value: true
+        - domain: 'com.apple.Safari'
+          key: 'IncludeDevelopMenu'
+          type: boolean
+          value: true
+        - domain: 'com.apple.Safari'
+          key: 'WebKitDeveloperExtrasEnabledPreferenceKey'
+          type: boolean
+          value: true
+        - domain: 'com.apple.Safari'
+          key: 'com.apple.Safari.ContentPageGroupIdentifier.WebKit2DeveloperExtrasEnabled'
+          type: boolean
+          value: 'true'
+        - domain: 'NSGlobalDomain'
+          key: 'WebKitDeveloperExtras'
+          type: boolean
+          value: 'true'  
+        - domain: 'com.apple.Safari.SandboxBroker'
+          key: 'ShowDevelopMenu'
+          type: integer
+          value: 1            
+# Other          
+        - domain: 'NSGlobalDomain'
+          key: 'NSTableViewDefaultSizeMode'
+          type: integer
+          value: 1
+        - domain: 'com.apple.screencapture'
+          key: 'type'
+          type: string
+          value: png
+        - domain: 'com.apple.menuextra.clock'
+          key: 'DateFormat'
+          type: string
+          value: EEE MMM d  HH:mm
+        - domain: 'com.apple.menuextra.battery'
+          key: 'ShowPercent'
+          type: string
+          value: 'YES'
+        - domain: 'com.apple.finder'
+          key: 'FXPreferredViewStyle'
+          type: string
+          value: 'clmv'
+        - domain: 'NSGlobalDomain'
+          key: 'NSNavPanelExpandedStateForSaveMode'
+          type: boolean
+          value: true
+        - domain: 'NSGlobalDomain'
+          key: 'PMPrintingExpandedStateForPrint'
+          type: boolean
+          value: true
+        - domain: 'NSGlobalDomain'
+          key: 'NSQuitAlwaysKeepsWindows'
+          type: boolean
+          value: false
+        - domain: 'com.apple.desktopservices'
+          key: 'DSDontWriteNetworkStores'
+          type: boolean
+          value: true
+        - domain: 'com.apple.print.PrintingPrefs'
+          key: 'Quit When Finished'
+          type: boolean
+          value: true

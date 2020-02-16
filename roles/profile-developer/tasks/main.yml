@@ -11,3 +11,46 @@
     - watch
     - rsync
     - htop
+    - bash
+    - bash-completion
+    - cloc
+    - curl
+    - docker
+    - ffmpeg
+    - findutils
+    - gawk
+    - git
+    - git-extras
+    - git-flow
+    - glances
+    - gnu-sed
+    - gnu-tar
+    - gnuplot
+    - grep
+    - htop-osx
+    - jpeg
+    - lame
+    - ncftp
+    - nmap
+    - openssl
+    - openssl@1.1
+    - packer
+    - pssh
+    - python
+    - python3
+    - readline
+    - sbt
+    - sqlite
+    - sshuttle
+    - terraform
+    - tree
+    - unar
+    - webp
+    - wget
+    - jq
+    - nvm
+    - mas
+    - kubectl
+    - kubectx
+    - fzf
+    - stern
