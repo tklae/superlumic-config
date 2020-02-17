@@ -25,7 +25,6 @@
         - maven
         - minio
         - mozilla-addon-sdk
-        - sdkman-cli
         - youtube-dl
     - name: install personal cask applications
       homebrew_cask: name={{item}} state=present
