@@ -69,7 +69,6 @@
         - mucommander
         - multifirefox
         - mumble
-        - mysimbl
         - mysqlworkbench
         - nvalt
         - owasp-zap
@@ -85,10 +84,9 @@
         - soapui
         - soundflower
         - teamviewer
-        - teleport
         - textmate
         - the-unarchiver
-        - torbrowser
+        - tor-browser
         - transmission
         - vagrant
         - vagrant-manager
