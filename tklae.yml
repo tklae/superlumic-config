@@ -8,6 +8,8 @@
     - roderik.superlumic-cli
     - roderik.superlumic-computername
     - roderik.superlumic-vim
+    - profile-all
+    - profile-developer
     
   tasks:
     - name: add a shortcut for archive in mail
