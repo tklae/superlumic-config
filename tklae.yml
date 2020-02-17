@@ -17,6 +17,7 @@
     - name: install personal brew apps
       homebrew: name={{item}} state=latest
       with_items:
+        - owncloud
         - imagemagick
         - ip_relay
         - gradle
