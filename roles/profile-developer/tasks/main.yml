@@ -39,7 +39,6 @@
     - python
     - python3
     - readline
-    - sbt
     - sqlite
     - sshuttle
     - terraform
