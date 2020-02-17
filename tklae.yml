@@ -25,7 +25,6 @@
         - maven
         - minio
         - mozilla-addon-sdk
-        - scala
         - sdkman
         - youtube-dl
     - name: install personal cask applications
